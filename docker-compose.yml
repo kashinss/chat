@@ -1,0 +1,54 @@
+services:
+  php:
+    build:
+      context: ./docker/php
+    container_name: support-chat_php
+    volumes:
+      - ./src:/var/www/support-chat
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - support_chat_network
+
+  postgres:
+    image: postgres:16
+    container_name: support-chat_postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: support_user
+      POSTGRES_PASSWORD: support_password
+      POSTGRES_DB: support_chat
+    networks:
+      - support_chat_network
+
+  nginx:
+    image: nginx:latest
+    container_name: support-chat_nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/support-chat
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+    networks:
+      - support_chat_network
+
+  websocket:
+    image: node:18-alpine
+    container_name: support-chat_websocket
+    working_dir: /usr/src/app
+    volumes:
+      - ./websocket:/usr/src/app
+    command: ["node", "server.js"]
+    ports:
+      - "6001:6001"
+    networks:
+      - support_chat_network
+
+volumes:
+  postgres_data:
+
+networks:
+  support_chat_network:
