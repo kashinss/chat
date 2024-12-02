@@ -35,4 +35,4 @@ security:
             #form_login: ~
 
     access_control:
-        - { path: ^/operator-chat, roles: operator }
+        - { path: ^/operator-chat, roles: ROLE_OPERATOR }
