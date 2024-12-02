@@ -9,11 +9,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * User
  *
- * @ORM\Table(name="user")
+ * @ORM\Table(name="`user`")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
 class User implements UserInterface
 {
+
+    const ALLOWED_ROLES = ['ROLE_USER', 'ROLE_OPERATOR'];
     /**
      * @var int
      *
@@ -45,11 +47,11 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @var UserRole
+     * @var array
      *
-     * @ORM\ManyToOne(targetEntity=UserRole::class)
+     * @ORM\Column(type="json", nullable=true)
      */
-    private $role;
+    private $roles;
 
     /**
      * @var DateTimeImmutable
@@ -197,25 +199,21 @@ class User implements UserInterface
     }
 
     /**
-     * @return UserRole
+     * @return array
      */
-    public function getRole(): UserRole
+    public function getRoles(): array
     {
-        return $this->role;
+        return $this->roles;
     }
 
     /**
-     * @param UserRole $role
+     * @param array $roles
      */
-    public function setRole(UserRole $role): void
+    public function setRoles(array $roles): void
     {
-        $this->role = $role;
+        $this->roles = $roles;
     }
 
-    public function getRoles()
-    {
-        return $this->role;
-    }
 
     public function getSalt()
     {

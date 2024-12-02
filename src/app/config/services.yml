@@ -4,6 +4,16 @@ parameters:
     #parameter_name: value
 
 services:
-    #service_name:
-    #    class: AppBundle\Directory\ClassName
-    #    arguments: ['@another_service_name', 'plain_value', '%parameter_name%']
+  app.security.authentication_success_handler:
+    class: AppBundle\Security\CustomLoginSuccessHandler
+    arguments: ["@router"]
+  app.chat_service:
+    class: AppBundle\Service\ChatService
+    arguments:
+      - '@doctrine.orm.entity_manager'
+  app.chat_controller:
+    class: AppBundle\Controller\ChatController
+    arguments:
+      - '@app.chat_service'
+      - '@templating'
+    public: true

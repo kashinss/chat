@@ -30,7 +30,6 @@
       <path value="$PROJECT_DIR$/src/vendor/symfony/http-client-contracts" />
       <path value="$PROJECT_DIR$/src/vendor/incenteev/composer-parameter-handler" />
       <path value="$PROJECT_DIR$/src/vendor/symfony/http-client" />
-      <path value="$PROJECT_DIR$/src/vendor/sensiolabs/security-checker" />
       <path value="$PROJECT_DIR$/src/vendor/swiftmailer/swiftmailer" />
       <path value="$PROJECT_DIR$/src/vendor/composer" />
       <path value="$PROJECT_DIR$/src/vendor/psr/log" />
@@ -53,13 +52,14 @@
       <path value="$PROJECT_DIR$/src/vendor/symfony/phpunit-bridge" />
       <path value="$PROJECT_DIR$/src/vendor/symfony/polyfill-intl-icu" />
       <path value="$PROJECT_DIR$/src/vendor/symfony/polyfill-ctype" />
-      <path value="$PROJECT_DIR$/src/vendor/doctrine/lexer" />
       <path value="$PROJECT_DIR$/src/vendor/doctrine/orm" />
       <path value="$PROJECT_DIR$/src/vendor/doctrine/dbal" />
       <path value="$PROJECT_DIR$/src/vendor/doctrine/instantiator" />
-      <path value="$PROJECT_DIR$/src/vendor/doctrine/data-fixtures" />
       <path value="$PROJECT_DIR$/src/vendor/doctrine/doctrine-fixtures-bundle" />
       <path value="$PROJECT_DIR$/src/vendor/fakerphp/faker" />
+      <path value="$PROJECT_DIR$/src/vendor/sensiolabs/security-checker" />
+      <path value="$PROJECT_DIR$/src/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/src/vendor/doctrine/data-fixtures" />
     </include_path>
   </component>
   <component name="PhpInterpreters">
@@ -138,6 +138,11 @@
   </component>
   <component name="PhpStanOptionsConfiguration">
     <option name="transferred" value="true" />
+  </component>
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/src/app/phpunit.xml.dist" custom_loader_path="$PROJECT_DIR$/src/vendor/autoload.php" use_configuration_file="true" />
+    </phpunit_settings>
   </component>
   <component name="PsalmOptionsConfiguration">
     <option name="transferred" value="true" />

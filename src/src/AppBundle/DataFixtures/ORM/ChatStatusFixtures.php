@@ -1,5 +1,5 @@
 <?php
-
+namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\ChatStatus;
 use Doctrine\Bundle\FixturesBundle\Fixture;

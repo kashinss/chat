@@ -18,3 +18,6 @@ migrate:
 
 cache:
 	docker exec support-chat_php php app/console cache:clear
+
+fixtures:
+	docker exec support-chat_php php app/console doctrine:fixtures:load

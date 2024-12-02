@@ -1,8 +1,9 @@
 <?php
-
+namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\User;
 use AppBundle\Entity\UserRole;
+use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
@@ -26,11 +27,14 @@ class UserFixtures extends Fixture implements ContainerAwareInterface
     public function load(ObjectManager $manager)
     {
         $encoder = $this->container->get('security.password_encoder');
-        $roles = $manager->getRepository(UserRole::class)->findAll();
-        foreach ($roles as $role) {
+        foreach (User::ALLOWED_ROLES as $role) {
             for ($i = 0; $i < 10; $i++) {
                 $client = new User();
-                $client->setRole($role);
+                $roles = [$role];
+                if ($role !== 'ROLE_USER') {
+                    $roles[] = 'ROLE_USER';
+                }
+                $client->setRoles($roles);
                 $client->setName($this->faker->name());
                 $client->setEmail($this->faker->email());
                 $client->setPassword($encoder->encodePassword($client, '123456'));
@@ -41,10 +45,4 @@ class UserFixtures extends Fixture implements ContainerAwareInterface
         $manager->flush();
     }
 
-    public function getDependencies()
-    {
-        return [
-            UserRolesFixtures::class
-        ];
-    }
 }

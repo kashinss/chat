@@ -1,3 +1,15 @@
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+
+app_chat:
+    path: /chat
+    defaults: { _controller: app.chat_controller:chatAction }
+
+app_operator_chat:
+    path: /operator-chat
+    defaults: { _controller: app.chat_controller:operatorChatAction }
+
+app_homepage:
+    path: /
+    defaults: { _controller: app.chat_controller:indexAction }
